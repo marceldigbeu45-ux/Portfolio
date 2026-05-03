@@ -401,7 +401,19 @@
     flex-direction: column;
   }
 
-  .project-body { flex: 1; }
+  .project-card.featured-project {
+    background:
+      linear-gradient(180deg, rgba(74,143,212,0.08), rgba(255,255,255,0.01)),
+      var(--surface);
+    border-color: rgba(168, 200, 240, 0.35);
+    box-shadow: 0 18px 48px rgba(6, 18, 32, 0.34);
+  }
+
+  .project-body {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+  }
 
   .project-footer {
     margin-top: 1.5rem;
@@ -409,6 +421,14 @@
     gap: 0.8rem;
     align-items: center;
     flex-wrap: wrap;
+    position: relative;
+    z-index: 2;
+  }
+
+  .project-stretch-link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
   }
 
   .btn-project {
@@ -428,6 +448,21 @@
   .btn-project:hover {
     background: var(--accent);
     color: var(--bg);
+  }
+
+  .project-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-bottom: 1rem;
+    padding: 0.4rem 0.75rem;
+    border: 1px solid rgba(168, 200, 240, 0.22);
+    background: rgba(74,143,212,0.08);
+    color: var(--accent3);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
 
   .badge-private {
@@ -1098,34 +1133,36 @@
   <!-- ENZI -->
   <div class="enzi-block">
     <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem;">
-      <div class="enzi-title" style="margin:0;">SKILL ENZI — Système pédagogique multidomaine</div>
+      <div class="enzi-title" style="margin:0;">SKILL ENZI — Assistant Multi-réseaux Sociaux</div>
+      <a href="enzi.html" class="btn-project" style="font-size:0.6rem;">Voir la case study →</a>
       <a href="https://github.com/marceldigbeu/enzi" target="_blank" class="btn-project" style="font-size:0.6rem;">GitHub →</a>
     </div>
     <p style="margin-bottom:1rem;">
-      ENZI est une skill Claude Code qui explique avec une approche <strong>visuelle, structurée et compréhensive</strong>. Trois domaines de spécialité :
+      ENZI aide à maîtriser n'importe quel réseau social. Trois piliers : <strong>décoder les algorithmes</strong>,
+      <strong>créer une identité cohérente partout</strong>, <strong>recommander stratégie de contenu & événements</strong>.
     </p>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
       <div style="background: var(--bg); border: 1px solid var(--accent2); padding: 1rem;">
-        <div style="font-family: 'Roboto Mono', monospace; font-size: 0.65rem; color: var(--accent2); letter-spacing: 0.1em; margin-bottom: 0.5rem;">TEACHING</div>
+        <div style="font-family: 'Roboto Mono', monospace; font-size: 0.65rem; color: var(--accent2); letter-spacing: 0.1em; margin-bottom: 0.5rem;">🔍 ALGORITHMES</div>
         <p style="font-size: 0.8rem; color: var(--muted); line-height: 1.6;">
-          Explique algorithmes, preuves, flux de code et architecture. Hiérarchie: overview → nœud critique → diagramme Mermaid → pseudocode → détails.
+          Court-format (TikTok), long-format (YouTube), professionnel (LinkedIn), communauté (Discord) — ENZI décode n'importe quel réseau.
         </p>
       </div>
       <div style="background: var(--bg); border: 1px solid var(--accent2); padding: 1rem;">
-        <div style="font-family: 'Roboto Mono', monospace; font-size: 0.65rem; color: var(--accent2); letter-spacing: 0.1em; margin-bottom: 0.5rem;">CREATOR ANALYSIS</div>
+        <div style="font-family: 'Roboto Mono', monospace; font-size: 0.65rem; color: var(--accent2); letter-spacing: 0.1em; margin-bottom: 0.5rem;">🎨 IDENTITÉ</div>
         <p style="font-size: 0.8rem; color: var(--muted); line-height: 1.6;">
-          Analyse algorithmes de recommandation (TikTok, YouTube, Spotify, Netflix). Stratégies de publication optimales avec calendrier et hooks gagnants.
+          Archétype, palette couleurs, tone of voice — cohérent sur TikTok, LinkedIn, Discord, Twitter, Bluesky, simultanément.
         </p>
       </div>
       <div style="background: var(--bg); border: 1px solid var(--accent2); padding: 1rem;">
-        <div style="font-family: 'Roboto Mono', monospace; font-size: 0.65rem; color: var(--accent2); letter-spacing: 0.1em; margin-bottom: 0.5rem;">PERSONAL BRANDING</div>
+        <div style="font-family: 'Roboto Mono', monospace; font-size: 0.65rem; color: var(--accent2); letter-spacing: 0.1em; margin-bottom: 0.5rem;">📋 STRATÉGIE</div>
         <p style="font-size: 0.8rem; color: var(--muted); line-height: 1.6;">
-          Identifie archétype de marque · défini palette couleurs, tone of voice, stratégie multi-plateformes cohérente.
+          1 plan unifié, N formats optimisés. Repurposage intelligent : 1 idée → TikTok + YouTube + LinkedIn + Discord.
         </p>
       </div>
     </div>
     <div style="margin: 1.5rem 0; font-family: 'Roboto Mono', monospace; font-size: 0.7rem; color: var(--accent); background: var(--bg); padding: 0.8rem 1rem; border-left: 3px solid var(--accent2);">
-      Toutes les réponses activent avec "[ENZI ACTIF]" — maintenant la cohérence structurelle sur tous les domaines
+      <a href="enzi.html" style="color: var(--accent); text-decoration: underline;">[ENZI ACTIF] → Voir l'étude de cas complète</a>
     </div>
   </div>
 </section>
@@ -1136,16 +1173,36 @@
   <h2 data-i18n="section-projets-h2">Projets</h2>
   <div class="projects-grid">
 
-    <div class="project-card">
+    <div class="project-card featured-project">
       <div class="project-body">
+        <a href="enzi.html" class="project-stretch-link" aria-label="Ouvrir l'étude de cas ENZI"></a>
+        <div style="
+          background: linear-gradient(135deg, rgba(74, 143, 212, 0.15) 0%, rgba(168, 200, 240, 0.08) 100%);
+          border-radius: 12px;
+          padding: 1.5rem;
+          margin-bottom: 1.2rem;
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          min-height: 140px;
+          border: 1px solid rgba(74, 143, 212, 0.2);
+        ">
+          <div style="font-size: 2.5rem; margin-bottom: 0.6rem;">🧠</div>
+          <div style="font-family: 'Roboto Mono', monospace; font-size: 0.75rem; color: var(--accent2); letter-spacing: 0.1em; font-weight: 600;">
+            [ENZI ACTIF]
+          </div>
+        </div>
+        <div class="project-kicker">Case Study · Assistant Multi-réseaux</div>
         <div class="project-period">2025 — Actuel</div>
         <h3>ENZI</h3>
-        <div class="project-subtitle">Skill Claude Code · Pédagogie visuelle multidomaine</div>
+        <div class="project-subtitle">Skill Claude Code · Maîtriser n'importe quel réseau social</div>
         <ul class="project-features">
-          <li><strong>Teaching :</strong> explique algorithmes, preuves, code et architecture avec hiérarchie visuelle (overview → nœud critique → Mermaid → pseudocode)</li>
-          <li><strong>Creator Analysis :</strong> analyse des algorithmes de recommandation (TikTok, YouTube, Spotify, Netflix) — stratégies de publication et calendriers optimisés</li>
-          <li><strong>Personal Branding :</strong> archétypes de marque, palette couleurs, tone of voice et stratégies multi-plateformes cohérentes</li>
-          <li>Activation systématique avec "[ENZI ACTIF]" — garant de cohérence structurelle sur tous les domaines</li>
+          <li><strong>Algorithmes Décodés :</strong> comprendre comment fonctionne TikTok, YouTube, LinkedIn, Discord, Reddit, n'importe quel réseau</li>
+          <li><strong>Identité Cohérente :</strong> créer une identité visuelle (archétype, palette, tone) qui marche partout</li>
+          <li><strong>Stratégie Multi-réseaux :</strong> 1 plan unifié, N formats optimisés par algo (repurposage intelligent)</li>
+          <li>Recommande contenus, événements, et calendrier de publication adapté à votre profil</li>
         </ul>
         <div class="project-stack">
           <span class="stack-tag">Claude Code Skill</span>
@@ -1156,13 +1213,18 @@
         </div>
       </div>
       <div class="project-footer">
+        <a href="enzi.html" class="btn-project">Voir l'étude de cas →</a>
         <a href="https://github.com/marceldigbeu/enzi" target="_blank" class="btn-project">Voir sur GitHub →</a>
       </div>
     </div>
 
-    <div class="project-card">
+    <div class="project-card featured-project">
       <div class="project-body">
-        <img src="agritech_preview.jpg" alt="AGRITECH preview" style="width:100%;height:auto;max-height:200px;object-fit:contain;background:var(--surface2);margin-bottom:1.2rem;border:1px solid var(--border);display:block;">>
+        <a href="agritech.html" class="project-stretch-link" aria-label="Ouvrir l'étude de cas AGRITECH"></a>
+        <a href="agritech.html" style="display:block;">
+          <img src="agritech_preview.jpg" alt="AGRITECH preview" style="width:100%;height:auto;max-height:200px;object-fit:contain;background:var(--surface2);margin-bottom:1.2rem;border:1px solid var(--border);display:block;">
+        </a>
+        <div class="project-kicker">Case Study · Business Decision</div>
         <div class="project-period">12/2025</div>
         <h3>Projet-AGROALIMENTAIRE</h3>
         <div class="project-subtitle">Data Analytics · Opportunités d'export agroalimentaires</div>
@@ -1171,6 +1233,7 @@
           <li>Normalisation des variables et filtrage multi-produits (viande, laiterie, blé, épices)</li>
           <li>Calcul de scores composites : opportunité d'export, dépendance import, pression sécurité alimentaire</li>
           <li>Classement des pays par potentiel commercial — identification des marchés stratégiques</li>
+          <li>Restitution orientée décision : pays cibles, lecture marché et recommandations export</li>
         </ul>
         <div class="project-stack">
           <span class="stack-tag">Python</span>
@@ -1182,6 +1245,7 @@
         </div>
       </div>
       <div class="project-footer">
+        <a href="agritech.html" class="btn-project">Voir l'étude de cas →</a>
         <a href="https://github.com/marceldigbeu/Projet-AGROALIMENTAIRE" target="_blank" class="btn-project">Voir sur GitHub →</a>
       </div>
     </div>

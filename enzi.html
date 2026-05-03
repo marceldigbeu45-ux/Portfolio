@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENZI | Assistant Présence Multi-réseaux · Algorithmes & Identité Visuelle</title>
+<meta name="description" content="ENZI : Assistant personnel pour maîtriser vos réseaux sociaux. Comprendre les algorithmes, créer votre identité visuelle, recommandations de contenus et d'événements.">
+<meta property="og:title" content="ENZI | Assistant Réseaux Sociaux & Branding">
+<meta property="og:description" content="Découvrez comment fonctionnent les algorithmes. Créez votre identité visuelle. Posez le contenu qui marche.">
+<meta property="og:url" content="https://marceldigbeu.github.io/Portfolio/enzi.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0f1a;
+    --surface: rgba(20, 28, 45, 0.82);
+    --surface-strong: #1a2540;
+    --text: #e8ecf1;
+    --muted: #9aa8bf;
+    --line: rgba(74, 143, 212, 0.18);
+    --accent: #4a8fd4;
+    --accent-2: #a8c8f0;
+    --shadow: 0 24px 80px rgba(0, 0, 0, 0.38);
+    --max: 1180px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--text);
+    background:
+      radial-gradient(circle at top right, rgba(74, 143, 212, 0.12), transparent 28%),
+      radial-gradient(circle at left 20%, rgba(168, 200, 240, 0.08), transparent 24%),
+      linear-gradient(180deg, #08100d 0%, #0a0f1a 45%, #0c121f 100%);
+    line-height: 1.6;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.16;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 42px 42px;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  .wrap { width: min(var(--max), calc(100% - 2rem)); margin: 0 auto; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: blur(18px);
+    background: rgba(8, 16, 13, 0.72);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-inner {
+    width: min(var(--max), calc(100% - 2rem));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+
+  .eyebrow, .nav-brand, .mini-label {
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .nav-brand {
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .nav-links a {
+    font-size: 0.76rem;
+    color: var(--muted);
+    transition: color 0.2s ease;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  .hero { padding: 5.5rem 0 3rem; }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .eyebrow {
+    color: var(--accent);
+    font-size: 0.78rem;
+    margin-bottom: 1.25rem;
+  }
+
+  h1 {
+    font-size: clamp(3rem, 7vw, 5.4rem);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    margin-bottom: 1.2rem;
+  }
+
+  .hero p {
+    max-width: 720px;
+    font-size: 1.04rem;
+    color: var(--muted);
+    margin-bottom: 1.8rem;
+  }
+
+  .problem-block {
+    background: rgba(215, 67, 67, 0.08);
+    border: 1px solid rgba(215, 67, 67, 0.2);
+    border-left: 4px solid #d74343;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin: 1.5rem 0;
+  }
+
+  .problem-block h4 {
+    color: #ff6b6b;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0.85rem 1.35rem;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    font-weight: 700;
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary { background: var(--accent); color: #0a0f1a; }
+  .btn-secondary { border-color: var(--line); background: rgba(255, 255, 255, 0.03); }
+
+  .hero-visual {
+    padding: 1rem;
+    border-radius: 28px;
+    background: linear-gradient(180deg, rgba(74, 143, 212, 0.12), rgba(255,255,255,0.02));
+    border: 1px solid var(--line);
+  }
+
+  .hero-visual-content {
+    background: linear-gradient(135deg, rgba(74, 143, 212, 0.15) 0%, rgba(168, 200, 240, 0.08) 100%);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 320px;
+  }
+
+  .hero-visual-content div:first-child {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-visual-content .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+
+  .hero-visual-content .desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 1rem;
+    max-width: 280px;
+  }
+
+  section { padding: 1.6rem 0 2.2rem; }
+
+  .section-head {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .section-head h2 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    letter-spacing: -0.03em;
+  }
+
+  .section-head p,
+  .panel p,
+  .pillar-card p,
+  .quote-box p,
+  li {
+    color: var(--muted);
+  }
+
+  .grid-2, .grid-3 {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+  @media (max-width: 768px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .hero-grid { grid-template-columns: 1fr; }
+  }
+
+  .panel, .pillar-card, .quote-box {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.38);
+    border-radius: 24px;
+    padding: 1.35rem;
+  }
+
+  .panel h3, .pillar-card h3 {
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+  }
+
+  .panel ul {
+    list-style: none;
+    display: grid;
+    gap: 0.6rem;
+    margin-top: 0.8rem;
+  }
+
+  .panel li {
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .panel li::before {
+    content: "";
+    width: 0.42rem;
+    height: 0.42rem;
+    border-radius: 50%;
+    background: var(--accent);
+    position: absolute;
+    left: 0;
+    top: 0.55rem;
+  }
+
+  .pillar-card {
+    border: 2px solid var(--line);
+    transition: all 0.3s ease;
+  }
+
+  .pillar-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 20px rgba(74, 143, 212, 0.2);
+    transform: translateY(-4px);
+  }
+
+  .pillar-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .pillar-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    margin-bottom: 0.6rem;
+    text-transform: uppercase;
+  }
+
+  .flow-step {
+    padding: 0.85rem;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--line);
+    font-size: 0.9rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .flow-step strong {
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  .case-study {
+    padding: 1.2rem;
+    border-radius: 16px;
+    background: rgba(74, 143, 212, 0.06);
+    border-left: 4px solid var(--accent);
+    margin-top: 0.8rem;
+  }
+
+  .case-study-title {
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .deliverables-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0.9rem;
+  }
+
+  .deliverable {
+    padding: 1rem;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--line);
+  }
+
+  .deliverable strong {
+    display: block;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+
+  .quote-box {
+    border-left: 4px solid var(--accent);
+    padding: 1.5rem;
+    background: rgba(74, 143, 212, 0.06);
+  }
+
+  .quote-box p {
+    font-size: 1.05rem;
+    font-style: italic;
+    margin-bottom: 0.5rem;
+  }
+
+  .quote-author {
+    font-size: 0.9rem;
+    color: var(--accent);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  footer {
+    margin-top: 3rem;
+    padding: 2rem 0;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  .feature-list {
+    display: grid;
+    gap: 0.8rem;
+  }
+
+  .feature-item {
+    padding: 0.75rem 0.9rem;
+    border-radius: 12px;
+    background: rgba(168, 200, 240, 0.06);
+    border-left: 3px solid var(--accent);
+    font-size: 0.9rem;
+  }
+
+  .feature-item strong {
+    color: var(--accent);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner wrap">
+    <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 0.5rem;">
+      <div class="nav-brand" style="margin: 0;">← Marcel DIGBEU</div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html#projets">Tous les projets</a>
+      <a href="index.html#competences">Skill ENZI</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">Skill Claude Code + Assistant IA</div>
+        <h1>ENZI</h1>
+        <p style="color: var(--accent); font-weight: 600; margin-bottom: 0.5rem;">
+          Maîtrisez vos réseaux sociaux
+        </p>
+        <p>
+          ENZI vous aide à <strong>comprendre les algorithmes</strong> de n'importe quel réseau social,
+          <strong>créer une identité visuelle</strong> cohérente partout, et <strong>recommande les contenus et événements</strong>
+          qui vous correspondent vraiment.
+        </p>
+
+        <div class="problem-block">
+          <h4>Le problème</h4>
+          <p style="margin: 0;">
+            Vous avez passions, centres d'intérêts, et envies de créer. Mais vous ne savez pas :
+            comment fonctionne l'algorithme de chaque réseau ? Quelle palette de couleurs adopter ? Quel type de contenu poster ?
+            À quels événements aller ? Comment être cohérent sur Discord, LinkedIn, TikTok, Reddit ET Bluesky simultanément ?
+          </p>
+        </div>
+
+        <div class="hero-actions">
+          <a href="https://github.com/marceldigbeu/enzi" target="_blank" class="btn btn-primary">Voir sur GitHub</a>
+          <a href="index.html#competences" class="btn btn-secondary">Voir la skill ENZI</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-visual-content">
+          <div>🎯</div>
+          <div class="label">[ENZI ACTIF]</div>
+          <div class="desc">
+            Algorithme décodé · Identité alignée · Contenus recommandés
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION : 3 PILIERS -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>La solution ENZI : 3 piliers</h2>
+      <p>Une approche unifiée pour maîtriser votre présence</p>
+    </div>
+    <div class="grid-3">
+
+      <div class="pillar-card">
+        <div class="pillar-icon">🔍</div>
+        <div class="pillar-label">Pilier 1</div>
+        <h3>Algorithmes Décodés</h3>
+        <p style="margin-bottom: 1rem;">
+          ENZI analyse comment fonctionne <strong>n'importe quel réseau social</strong>.
+          Short-form, long-form, communauté, réseau professionnel, émergent — ENZI décode la logique universelle.
+        </p>
+        <div class="feature-list">
+          <div class="feature-item">
+            <strong>Court terme (TikTok, Reels, Shorts) :</strong> Watch-time, retention, FYP
+          </div>
+          <div class="feature-item">
+            <strong>Long terme (YouTube, Podcasts) :</strong> AVD, playlist, rétention progressive
+          </div>
+          <div class="feature-item">
+            <strong>Professionnel (LinkedIn, Twitter) :</strong> Network depth, engagement rate, timing
+          </div>
+          <div class="feature-item">
+            <strong>Communauté (Discord, Reddit, Threads) :</strong> Engagement authentique, audience building
+          </div>
+          <div class="feature-item">
+            <strong>Émergent (Bluesky, BeReal) :</strong> Early adopter advantage, niche positioning
+          </div>
+        </div>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-icon">🎨</div>
+        <div class="pillar-label">Pilier 2</div>
+        <h3>Identité Cohérente Partout</h3>
+        <p style="margin-bottom: 1rem;">
+          À partir de vos passions et centres d'intérêts, ENZI recommande une identité <strong>adaptée à chaque plateforme</strong>
+          mais cohérente dans son essence.
+        </p>
+        <div class="feature-list">
+          <div class="feature-item">
+            <strong>Archétype personnel :</strong> Expert, Créateur, Entrepreneur, Coach…
+          </div>
+          <div class="feature-item">
+            <strong>Palette couleurs universelle :</strong> Qui marche sur Discord, Twitter ET Instagram
+          </div>
+          <div class="feature-item">
+            <strong>Tone of voice :</strong> Adaptable à chaque contexte (professionnel vs casual)
+          </div>
+          <div class="feature-item">
+            <strong>Adaptation par plateforme :</strong> Même identité, format différent
+          </div>
+        </div>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-icon">📋</div>
+        <div class="pillar-label">Pilier 3</div>
+        <h3>Stratégie Multi-réseaux</h3>
+        <p style="margin-bottom: 1rem;">
+          ENZI crée une stratégie unifiée qui s'exécute sur <strong>tous vos réseaux simultanément</strong>.
+        </p>
+        <div class="feature-list">
+          <div class="feature-item">
+            <strong>Types de contenus adaptés :</strong> Quoi poster où (60-sec TikTok vs 10-min YouTube)
+          </div>
+          <div class="feature-item">
+            <strong>Événements pertinents :</strong> Confs, meetups, challenges sur chaque réseau
+          </div>
+          <div class="feature-item">
+            <strong>Calendrier unifié :</strong> Plan unique : Twitter, LinkedIn, TikTok, Discord, Reddit
+          </div>
+          <div class="feature-item">
+            <strong>Repurposage automatique :</strong> 1 idée → N formats pour N réseaux
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WORKFLOW -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Comment ENZI vous assiste</h2>
+    </div>
+    <div class="grid-2">
+      <div class="panel">
+        <h3>Étape 1 : Vous vous présentez</h3>
+        <div class="flow-step">
+          <strong>Passions & intérêts</strong>
+          Tech, design, entrepreneuriat, biologie, art, finance…
+        </div>
+        <div class="flow-step">
+          <strong>Objectif</strong>
+          Construire audience, devenir expert, vendre, communiquer
+        </div>
+        <div class="flow-step">
+          <strong>Plateformes visées</strong>
+          LinkedIn, TikTok, YouTube, Instagram, Twitter
+        </div>
+        <div class="flow-step">
+          <strong>Public cible</strong>
+          Qui voulez-vous atteindre ?
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Étape 2 : ENZI vous assiste</h3>
+        <div class="flow-step">
+          <strong>Analyse d'algorithmes</strong>
+          Comment fonctionne chaque plateforme pour VOTRE audience
+        </div>
+        <div class="flow-step">
+          <strong>Identité visuelle</strong>
+          Palette, tone, style — tout cohérent et aligné
+        </div>
+        <div class="flow-step">
+          <strong>Stratégie de contenu</strong>
+          Types, fréquence, calendrier, événements
+        </div>
+        <div class="flow-step">
+          <strong>Plan d'action</strong>
+          Semaine 1 : quoi poster, où, à quelle heure
+        </div>
+      </div>
+
+      <div class="case-study">
+        <div class="case-study-title">Cas 1 : Développeuse Python/AI</div>
+        <p style="margin: 0; font-size: 0.9rem;">
+          Réseaux : <strong>TikTok + LinkedIn + GitHub</strong> + Discord (communauté).
+          ENZI recommande : archétype "Expert", palette bleu/blanc, tone éducatif & accessible.
+          Stratégie : 60-sec tutorials TikTok (décode algo short-form), threads LinkedIn (professionnel),
+          live coding Discord. 1 idée → 3 formats, calendrier unifié.
+        </p>
+      </div>
+
+      <div class="case-study">
+        <div class="case-study-title">Cas 2 : Créatrice multi-réseaux</div>
+        <p style="margin: 0; font-size: 0.9rem;">
+          Réseaux : <strong>Instagram + TikTok + Twitter + Bluesky</strong>.
+          ENZI recommande : archétype "Créateur", palette rose/violet, tone accessible & communautaire.
+          Stratégie : Reels courts Instagram, TikToks tendance, threads Twitter, posts authentic Bluesky.
+          Même identité, format adapté à chaque algo. Événements : creative meetups, art challenges.
+        </p>
+      </div>
+
+      <div class="case-study">
+        <div class="case-study-title">Cas 3 : Entrepreneur "omnichannel"</div>
+        <p style="margin: 0; font-size: 0.9rem;">
+          Réseaux : <strong>LinkedIn + Twitter + Reddit + Threads + YouTube</strong>.
+          ENZI recommande : archétype "Entrepreneur", palette noir/or, tone données & insights.
+          Stratégie : Posts longs YouTube (15-30 min), threads Twitter (rapides), Reddit (communauté),
+          LinkedIn (réseau professionnel). ENZI crée 1 plan qui couvre tous les algos.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CE QUE PROUVE ENZI -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Ce que ce projet démontre</h2>
+    </div>
+    <div class="grid-2">
+      <div class="panel">
+        <h3>Compétences techniques</h3>
+        <ul>
+          <li><strong>Data Science</strong> — Analyse des algorithmes de recommandation</li>
+          <li><strong>Design Thinking</strong> — Créer un système réutilisable & scalable</li>
+          <li><strong>Branding & Design</strong> — Identité visuelle cohérente multi-plateforme</li>
+          <li><strong>Python & Documentation</strong> — Skill Claude Code + repo GitHub public</li>
+          <li><strong>Communication</strong> — Expliquer clairement sans jargon</li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <h3>Impact & Utilité</h3>
+        <ul>
+          <li><strong>Résout un vrai problème</strong> — Les créateurs ne comprennent pas les algos</li>
+          <li><strong>Multi-domaines</strong> — Fonctionne pour créateurs, entrepreneurs, experts</li>
+          <li><strong>Actionnable</strong> — Pas de théorie, du concret immédiat</li>
+          <li><strong>Scalable</strong> — Une seule skill assiste N utilisateurs</li>
+          <li><strong>Évolutive</strong> — Adapte ses recommandations à l'évolution des plateformes</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVRABLES -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Livrables</h2>
+    </div>
+    <div class="deliverables-grid">
+      <div class="deliverable">
+        <strong>Skill Claude Code</strong>
+        Implémentation complète et fonctionnelle
+      </div>
+      <div class="deliverable">
+        <strong>Repository GitHub</strong>
+        Code source, documentation, exemples
+      </div>
+      <div class="deliverable">
+        <strong>Documentation complète</strong>
+        Comment l'utiliser, adapter, déployer
+      </div>
+      <div class="deliverable">
+        <strong>Cas d'usage réels</strong>
+        Dev, consultant, créateur, founder…
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section>
+  <div class="wrap">
+    <div class="quote-box">
+      <p>
+        "ENZI n'explique pas juste comment fonctionne TikTok.
+        ENZI vous aide à devenir une meilleure version de vous-même en ligne."
+      </p>
+      <div class="quote-author">Marcel DIGBEU · 2026</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <p>ENZI · Assistant Réseaux Sociaux & Branding</p>
+    <p style="margin-top: 1.5rem; display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; align-items: center;">
+      <a href="index.html" style="color: var(--accent); text-decoration: underline; font-weight: 600;">← Retour au portfolio</a>
+      <span style="color: var(--line);">·</span>
+      <a href="index.html#competences" style="color: var(--accent); text-decoration: underline;">Voir la skill ENZI</a>
+      <span style="color: var(--line);">·</span>
+      <a href="index.html#projets" style="color: var(--accent); text-decoration: underline;">Tous les projets</a>
+    </p>
+    <p style="margin-top: 1rem; color: var(--muted); font-size: 0.8rem; text-align: center;">
+      © 2026 Marcel DIGBEU · Ingénieur IA & Data
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
