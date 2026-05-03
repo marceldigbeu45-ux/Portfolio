@@ -1,0 +1,5 @@
+﻿cluster,score_final_viande_de_bovins,score_final_lait,score_final_ble,score_final_epices,cluster_label
+0,0.575,0.505,0.431,0.601,Potentiel intermediaire
+1,0.599,0.607,0.61,0.608,Priorite multi-produits
+2,0.302,0.445,0.45,0.675,Faible priorite immediate
+3,0.624,0.597,0.535,0.437,Marches specialises

@@ -1,0 +1,41 @@
+﻿pays,score_final_viande_de_bovins,produit,score_final_lait,score_final_ble,score_final_epices
+"Chine, continentale",0.7620375573741793,viande_de_bovins,,,
+Inde,0.7480664512217645,viande_de_bovins,,,
+Indonésie,0.6655140439868954,viande_de_bovins,,,
+Japon,0.6571686509229545,viande_de_bovins,,,
+Bangladesh,0.6473467802132006,viande_de_bovins,,,
+Nigéria,0.6443497060911845,viande_de_bovins,,,
+Viet Nam,0.6401139734993418,viande_de_bovins,,,
+Philippines,0.633248299406689,viande_de_bovins,,,
+Ghana,0.6321372112616364,viande_de_bovins,,,
+Libéria,0.630831558231312,viande_de_bovins,,,
+"Chine, continentale",,lait,0.8133645711239259,,
+Indonésie,,lait,0.6737741842647241,,
+Nigéria,,lait,0.658235127111454,,
+Philippines,,lait,0.6508429087879966,,
+Viet Nam,,lait,0.6400478471114066,,
+Bangladesh,,lait,0.6375351720242272,,
+Malaisie,,lait,0.6355753434123763,,
+Thaïlande,,lait,0.6335286633130961,,
+Côte d'Ivoire,,lait,0.633405080189815,,
+Ghana,,lait,0.6323720379379069,,
+Indonésie,,ble,,0.7736250432875779,
+Bangladesh,,ble,,0.7113268268855817,
+Viet Nam,,ble,,0.7006494135330237,
+Nigéria,,ble,,0.700276732982652,
+Philippines,,ble,,0.6834359459691263,
+Thaïlande,,ble,,0.6657861875012924,
+Brésil,,ble,,0.6652043029961793,
+Mexique,,ble,,0.6612861579689049,
+Japon,,ble,,0.6591259026741988,
+Inde,,ble,,0.6384029791365848,
+États-Unis d'Amérique,,epices,,,0.792864714251681
+"Chine, continentale",,epices,,,0.7363092962506547
+Pakistan,,epices,,,0.6687099270757053
+Fédération de Russie,,epices,,,0.6489826987119296
+Italie,,epices,,,0.6470801530426258
+Viet Nam,,epices,,,0.6456604777001663
+Pays-Bas,,epices,,,0.640418659342668
+Espagne,,epices,,,0.6404138053820687
+Pologne,,epices,,,0.6372301299064234
+République-Unie de Tanzanie,,epices,,,0.6355437756877751

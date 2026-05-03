@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGRITECH | Étude de Cas Export Agroalimentaire</title>
+<meta name="description" content="Étude de cas AGRITECH : analyse FAO, scoring multicritère, marchés cibles export et recommandations stratégiques.">
+<meta property="og:title" content="AGRITECH | Étude de Cas Export Agroalimentaire">
+<meta property="og:description" content="Projet data d'aide à la décision pour l'expansion internationale d'AGRITECH.">
+<meta property="og:image" content="https://marceldigbeu.github.io/Portfolio/agritech_preview.jpg">
+<meta property="og:url" content="https://marceldigbeu.github.io/Portfolio/agritech.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #09140f;
+    --surface: rgba(14, 33, 24, 0.86);
+    --surface-strong: #10281d;
+    --text: #eef7ef;
+    --muted: #9bb7a4;
+    --line: rgba(165, 214, 167, 0.14);
+    --accent: #d7ff71;
+    --accent-2: #73d39c;
+    --shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
+    --max: 1180px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--text);
+    background:
+      radial-gradient(circle at top right, rgba(115, 211, 156, 0.12), transparent 28%),
+      radial-gradient(circle at left 20%, rgba(215, 255, 113, 0.08), transparent 24%),
+      linear-gradient(180deg, #07110c 0%, #09140f 45%, #0b1712 100%);
+    line-height: 1.6;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.16;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 42px 42px;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  .wrap { width: min(var(--max), calc(100% - 2rem)); margin: 0 auto; }
+
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: blur(18px);
+    background: rgba(8, 16, 13, 0.72);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-inner {
+    width: min(var(--max), calc(100% - 2rem));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+
+  .eyebrow,
+  .nav-brand,
+  .mini-label {
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .nav-brand {
+    font-size: 0.8rem;
+    color: var(--accent);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .nav-links a {
+    font-size: 0.76rem;
+    color: var(--muted);
+    transition: color 0.2s ease;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  .hero { padding: 5.5rem 0 3rem; }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .eyebrow {
+    color: var(--accent);
+    font-size: 0.78rem;
+    margin-bottom: 1.25rem;
+  }
+
+  h1 {
+    font-size: clamp(3rem, 7vw, 5.4rem);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    margin-bottom: 1.2rem;
+  }
+
+  .hero p {
+    max-width: 720px;
+    font-size: 1.04rem;
+    color: var(--muted);
+    margin-bottom: 1.8rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0.85rem 1.35rem;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    font-weight: 700;
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary { background: var(--accent); color: #102113; }
+  .btn-secondary { border-color: var(--line); background: rgba(255, 255, 255, 0.03); }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.9rem;
+  }
+
+  .stat,
+  .panel,
+  .market-card,
+  .timeline-card,
+  .quote-box {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+  }
+
+  .stat {
+    border-radius: 20px;
+    padding: 1rem;
+  }
+
+  .stat strong {
+    display: block;
+    font-size: 1.8rem;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.45rem;
+  }
+
+  .stat span {
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+
+  .hero-visual {
+    padding: 1rem;
+    border-radius: 28px;
+    background: linear-gradient(180deg, rgba(115, 211, 156, 0.12), rgba(255,255,255,0.02));
+    border: 1px solid var(--line);
+  }
+
+  .hero-visual img {
+    display: block;
+    width: 100%;
+    border-radius: 22px;
+    background: #0f1f17;
+  }
+
+  section { padding: 1.6rem 0 2.2rem; }
+
+  .section-head {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .section-head h2 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    letter-spacing: -0.03em;
+  }
+
+  .section-head p,
+  .panel p,
+  .timeline-card p,
+  .market-card p,
+  .quote-box p,
+  li {
+    color: var(--muted);
+  }
+
+  .grid-2,
+  .grid-3 {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+  .panel,
+  .market-card,
+  .timeline-card,
+  .quote-box {
+    border-radius: 24px;
+    padding: 1.35rem;
+  }
+
+  .panel h3,
+  .market-card h3,
+  .timeline-card h3 {
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+  }
+
+  .panel ul,
+  .timeline-card ul {
+    list-style: none;
+    display: grid;
+    gap: 0.6rem;
+    margin-top: 0.8rem;
+  }
+
+  .panel li,
+  .timeline-card li {
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .panel li::before,
+  .timeline-card li::before {
+    content: "";
+    width: 0.42rem;
+    height: 0.42rem;
+    border-radius: 50%;
+    background: var(--accent);
+    position: absolute;
+    left: 0;
+    top: 0.55rem;
+  }
+
+  .score-list {
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .story-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 1rem;
+  }
+
+  .spotlight {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    border-radius: 24px;
+    padding: 1.35rem;
+  }
+
+  .spotlight h3 {
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+  }
+
+  .role-points,
+  .proof-list {
+    display: grid;
+    gap: 0.8rem;
+    margin-top: 0.8rem;
+  }
+
+  .role-point,
+  .proof-item {
+    padding: 1rem;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--line);
+  }
+
+  .role-point strong,
+  .proof-item strong {
+    display: block;
+    color: var(--accent);
+    margin-bottom: 0.35rem;
+  }
+
+  .signature {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .deliverables-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.9rem;
+  }
+
+  .deliverable {
+    padding: 1rem;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--line);
+  }
+
+  .deliverable strong {
+    display: block;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+
+  .capability-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.9rem;
+  }
+
+  .capability {
+    padding: 1rem;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--line);
+  }
+
+  .capability strong {
+    display: block;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .gallery-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    border-radius: 24px;
+    overflow: hidden;
+  }
+
+  .gallery-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: #0f1f17;
+  }
+
+  .gallery-meta {
+    padding: 1rem 1.1rem 1.15rem;
+  }
+
+  .gallery-meta strong {
+    display: block;
+    color: var(--accent);
+    margin-bottom: 0.35rem;
+  }
+
+  .asset-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-bottom: 1rem;
+  }
+
+  .asset-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    padding: 0.5rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,0.03);
+    color: var(--text);
+    font-size: 0.84rem;
+  }
+
+  .score-item {
+    padding: 1rem 1.1rem;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--line);
+  }
+
+  .score-item strong {
+    display: block;
+    color: var(--accent);
+    margin-bottom: 0.45rem;
+  }
+
+  .market-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .tag-row {
+    display: flex;
+    gap: 0.55rem;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    padding: 0.35rem 0.7rem;
+    border-radius: 999px;
+    background: rgba(115, 211, 156, 0.1);
+    border: 1px solid rgba(115, 211, 156, 0.2);
+    color: #dfffe7;
+    font-size: 0.83rem;
+  }
+
+  .matrix { overflow-x: auto; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 740px;
+  }
+
+  th,
+  td {
+    padding: 0.95rem 0.8rem;
+    text-align: left;
+    border-bottom: 1px solid var(--line);
+  }
+
+  th {
+    font-size: 0.82rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  td strong { color: var(--text); }
+
+  .footer { padding: 2rem 0 3rem; }
+
+  .footer-box {
+    border-radius: 28px;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(215,255,113,0.12), rgba(115,211,156,0.08));
+    border: 1px solid var(--line);
+  }
+
+  .footer-box p {
+    color: rgba(238, 247, 239, 0.8);
+    max-width: 760px;
+    margin: 0.8rem 0 1.2rem;
+  }
+
+  @media (max-width: 980px) {
+    .hero-grid,
+    .grid-2,
+    .grid-3,
+    .story-grid,
+    .deliverables-grid,
+    .capability-grid,
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-stats {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .nav-inner {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .hero { padding-top: 4.5rem; }
+    .hero-stats { grid-template-columns: 1fr; }
+    h1 { font-size: 2.5rem; }
+  }
+</style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="index.html#projets">Marcel Digbeu / Portfolio</a>
+      <div class="nav-links">
+        <a href="#contexte">Contexte</a>
+        <a href="#role">Mon rôle</a>
+        <a href="#methode">Méthode</a>
+        <a href="#resultats">Résultats</a>
+        <a href="#reco">Recommandations</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Projet data analytique · agroalimentaire · export</div>
+        <h1>AGRITECH, de la donnée brute à une stratégie d’export priorisée.</h1>
+        <p>
+          Étude de cas construite à partir d’un notebook Jupyter et d’un rapport d’analyse pour identifier les
+          marchés internationaux les plus prometteurs pour AGRITECH. L’objectif n’était pas seulement de classer
+          des pays, mais de transformer des données FAO en outil d’aide à la décision.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://github.com/marceldigbeu/Projet-AGROALIMENTAIRE" target="_blank" rel="noreferrer">Voir le GitHub</a>
+          <a class="btn btn-secondary" href="index.html#projets">Retour au portfolio</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><strong>2</strong><span>sources de données consolidées</span></div>
+          <div class="stat"><strong>4</strong><span>familles de produits étudiées</span></div>
+          <div class="stat"><strong>3</strong><span>scores synthétiques créés</span></div>
+          <div class="stat"><strong>2017</strong><span>année de référence FAO pour le scoring</span></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="agritech_preview.jpg" alt="Aperçu du projet AGRITECH">
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="contexte">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="mini-label eyebrow">Problématique</div>
+            <h2>Comprendre où AGRITECH doit s’exporter, et pourquoi.</h2>
+          </div>
+        </div>
+        <div class="grid-2">
+          <article class="panel">
+            <h3>Contexte métier</h3>
+            <p>
+              Dans le cadre d’un projet orienté data analyst à Aivancity, nous avons travaillé sur une situation
+              d’entreprise réaliste : une société agroalimentaire française souhaite s’ouvrir à l’international,
+              sans encore savoir quels marchés cibler en priorité.
+            </p>
+            <ul>
+              <li>Identifier des pays cibles crédibles pour une première expansion.</li>
+              <li>Vérifier si les données FAO sont suffisamment fiables pour orienter une décision business.</li>
+              <li>Passer d’une intuition commerciale à une lecture structurée des besoins de marché.</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <h3>Question centrale</h3>
+            <p>
+              Quelle stratégie d’exportation internationale adopter pour AGRITECH, et quels pays présentent les
+              meilleurs signaux de dépendance alimentaire, de besoin structurel et de potentiel de demande ?
+            </p>
+            <ul>
+              <li>Quels marchés dépendent durablement des importations ?</li>
+              <li>Où la production locale reste insuffisante face à la demande ?</li>
+              <li>Quels pays combinent pression démographique et déficit d’offre ?</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="methode">
+      <div class="wrap">
+        <div class="section-head" id="role">
+          <div>
+            <div class="mini-label eyebrow">Mon rôle</div>
+            <h2>Ce que j’ai apporté dans le projet.</h2>
+          </div>
+        </div>
+        <div class="story-grid" style="margin-bottom:1rem;">
+          <article class="spotlight">
+            <h3>Contribution projet</h3>
+            <p>
+              Sur ce cas, ma valeur n’était pas seulement technique. Il fallait cadrer une question business floue,
+              choisir les bons indicateurs FAO, construire une logique de scoring lisible, puis transformer les
+              résultats en recommandations compréhensibles par une entreprise.
+            </p>
+            <div class="role-points">
+              <div class="role-point">
+                <strong>Cadrage analytique</strong>
+                Traduction de la problématique export en variables mesurables : production, importations,
+                exportations, disponibilité intérieure, disponibilité alimentaire et population.
+              </div>
+              <div class="role-point">
+                <strong>Structuration des données</strong>
+                Nettoyage, harmonisation, pivot par pays, fusion multi-sources et préparation des tables de scoring.
+              </div>
+              <div class="role-point">
+                <strong>Restitution décisionnelle</strong>
+                Mise en récit des résultats pour faire émerger des priorités marché plutôt qu’un simple classement brut.
+              </div>
+            </div>
+          </article>
+          <article class="spotlight">
+            <h3>Ce que ce projet démontre</h3>
+            <div class="proof-list">
+              <div class="proof-item">
+                <strong>Passer de la donnée à la décision</strong>
+                Je ne m’arrête pas au traitement statistique : j’organise la sortie analytique autour d’une décision business concrète.
+              </div>
+              <div class="proof-item">
+                <strong>Concevoir un scoring défendable</strong>
+                La pondération, la normalisation et la lecture des signaux sont pensées pour être expliquées, critiquées et améliorées.
+              </div>
+              <div class="proof-item">
+                <strong>Relier technique et marché</strong>
+                Chaque résultat est relu en termes de sécurité alimentaire, transition de consommation ou logique de chaîne de valeur.
+              </div>
+            </div>
+            <div class="signature">
+              Positionnement portfolio : data analyst orienté aide à la décision, capable de formaliser une problématique métier et de produire un livrable stratégique.
+            </div>
+          </article>
+        </div>
+
+        <div class="section-head">
+          <div>
+            <div class="mini-label eyebrow">Méthode</div>
+            <h2>Une approche reproductible, centrée sur le scoring multicritère.</h2>
+          </div>
+        </div>
+        <div class="grid-2">
+          <article class="panel">
+            <h3>Données mobilisées</h3>
+            <ul>
+              <li>FAOSTAT / FAO : disponibilités alimentaires, production, importations, exportations, disponibilité intérieure.</li>
+              <li>Données démographiques mondiales : population 2000–2018, filtrée sur 2017 pour la consolidation.</li>
+              <li>Périmètre produits : blé, viande bovine, lait et épices.</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <h3>Pipeline analytique</h3>
+            <ul>
+              <li>Contrôle qualité : structure, types, doublons, valeurs manquantes.</li>
+              <li>Filtrage des indicateurs utiles puis pivot par pays.</li>
+              <li>Fusion avec la population 2017 sur le code pays.</li>
+              <li>Normalisation Min-Max pour rendre les indicateurs comparables.</li>
+            </ul>
+          </article>
+        </div>
+        <div class="panel" style="margin-top:1rem;">
+          <h3>Logique des scores construits</h3>
+          <div class="score-list">
+            <div class="score-item">
+              <strong>Score 1 · Opportunité export</strong>
+              Combine faible production locale, dépendance aux importations, faible capacité exportatrice,
+              tension sur la disponibilité alimentaire et poids démographique du marché.
+            </div>
+            <div class="score-item">
+              <strong>Score 2 · Dépendance aux importations</strong>
+              Mesure les pays dont l’approvisionnement repose structurellement sur le commerce extérieur.
+            </div>
+            <div class="score-item">
+              <strong>Score 3 · Pression alimentaire</strong>
+              Croise disponibilité alimentaire par habitant et taille de population pour repérer les marchés
+              susceptibles d’augmenter leur besoin d’importation.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="resultats">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="mini-label eyebrow">Livrables</div>
+            <h2>Ce que le projet produit concrètement.</h2>
+          </div>
+        </div>
+        <div class="deliverables-grid" style="margin-bottom:1rem;">
+          <article class="deliverable">
+            <strong>Notebook d’analyse</strong>
+            Pipeline Jupyter reproductible pour nettoyer, fusionner, normaliser et scorer les pays.
+          </article>
+          <article class="deliverable">
+            <strong>Scoring multicritère</strong>
+            Trois scores pensés pour objectiver l’opportunité export et éviter les lectures trop simplistes.
+          </article>
+          <article class="deliverable">
+            <strong>Recommandations marché</strong>
+            Priorisation de pays et de zones géographiques par produit, avec lecture business associée.
+          </article>
+          <article class="deliverable">
+            <strong>Rapport stratégique</strong>
+            Restitution structurée pour transformer une exploration data en support de décision pour AGRITECH.
+          </article>
+        </div>
+
+        <div class="section-head">
+          <div>
+            <div class="mini-label eyebrow">Stack & compétences</div>
+            <h2>Les briques techniques et analytiques mobilisées.</h2>
+          </div>
+        </div>
+        <div class="capability-grid" style="margin-bottom:1rem;">
+          <article class="capability">
+            <strong>Data wrangling</strong>
+            Python, Pandas, jointures, pivots, contrôle qualité, traitement des valeurs manquantes et standardisation du périmètre d’analyse.
+          </article>
+          <article class="capability">
+            <strong>Analytical thinking</strong>
+            Construction de métriques utiles au métier, pondération de signaux, normalisation Min-Max et lecture comparative inter-pays.
+          </article>
+          <article class="capability">
+            <strong>Business translation</strong>
+            Restitution orientée marché, priorisation export, segmentation par produit et formulation de recommandations stratégiques.
+          </article>
+        </div>
+
+        <div class="section-head">
+          <div>
+            <div class="mini-label eyebrow">Captures</div>
+            <h2>Sélection des documents générés depuis le notebook.</h2>
+          </div>
+        </div>
+        <div class="asset-links">
+          <a class="asset-link" href="agritech_assets/agritech_master_scores_clusters.csv">Base scores + clusters</a>
+          <a class="asset-link" href="agritech_assets/agritech_top10_by_product.csv">Top 10 par produit</a>
+          <a class="asset-link" href="agritech_assets/agritech_cluster_profiles.csv">Profils des clusters</a>
+          <a class="asset-link" href="agritech_assets/agritech_cluster_selection.csv">Sélection par cluster</a>
+        </div>
+        <div class="gallery-grid" style="margin-bottom:1rem;">
+          <article class="gallery-card">
+            <img src="agritech_assets/notebook_chart_1.png" alt="Graphique Jupyter viande bovine">
+            <div class="gallery-meta">
+              <strong>Notebook · Viande bovine</strong>
+              Top 10 des marchés cibles sur la viande bovine.
+            </div>
+          </article>
+          <article class="gallery-card">
+            <img src="agritech_assets/notebook_chart_3.png" alt="Graphique Jupyter blé">
+            <div class="gallery-meta">
+              <strong>Notebook · Blé</strong>
+              Lecture comparative des pays les plus attractifs.
+            </div>
+          </article>
+          <article class="gallery-card">
+            <img src="agritech_assets/agritech_clustering.png" alt="Clustering des marchés AGRITECH">
+            <div class="gallery-meta">
+              <strong>Clustering · Segments de marchés</strong>
+              Segmentation des pays selon leurs profils de scores multi-produits.
+            </div>
+          </article>
+          <article class="gallery-card">
+            <img src="agritech_assets/report_page_1.png" alt="Couverture du rapport AGRITECH">
+            <div class="gallery-meta">
+              <strong>Rapport final · Couverture</strong>
+              Page d’ouverture du livrable de restitution.
+            </div>
+          </article>
+        </div>
+
+        <div class="section-head">
+          <div>
+            <div class="mini-label eyebrow">Analyse</div>
+            <h2>Résultats par famille de produits.</h2>
+          </div>
+        </div>
+        <div class="grid-2">
+          <article class="market-card">
+            <h3>Viande bovine</h3>
+            <p>
+              Les meilleurs scores finaux ressortent sur des marchés asiatiques et ouest-africains où la demande
+              progresse plus vite que la capacité de production locale.
+            </p>
+            <div class="tag-row">
+              <span class="tag">Chine</span>
+              <span class="tag">Inde</span>
+              <span class="tag">Indonésie</span>
+              <span class="tag">Japon</span>
+              <span class="tag">Bangladesh</span>
+              <span class="tag">Nigéria</span>
+              <span class="tag">Viet Nam</span>
+            </div>
+          </article>
+          <article class="market-card">
+            <h3>Lait</h3>
+            <p>
+              Le scoring met en avant des marchés à forte croissance démographique et à offre locale limitée,
+              avec un intérêt particulier pour les produits laitiers transformés.
+            </p>
+            <div class="tag-row">
+              <span class="tag">Chine</span>
+              <span class="tag">Indonésie</span>
+              <span class="tag">Nigéria</span>
+              <span class="tag">Philippines</span>
+              <span class="tag">Viet Nam</span>
+              <span class="tag">Bangladesh</span>
+            </div>
+          </article>
+          <article class="market-card">
+            <h3>Blé</h3>
+            <p>
+              Les pays les mieux positionnés sont principalement situés en Asie du Sud et du Sud-Est, avec des
+              besoins structurels liés à la sécurité alimentaire et à la dépendance aux importations.
+            </p>
+            <div class="tag-row">
+              <span class="tag">Indonésie</span>
+              <span class="tag">Bangladesh</span>
+              <span class="tag">Viet Nam</span>
+              <span class="tag">Nigéria</span>
+              <span class="tag">Philippines</span>
+              <span class="tag">Thaïlande</span>
+            </div>
+          </article>
+          <article class="market-card">
+            <h3>Épices</h3>
+            <p>
+              Ici, le besoin ne relève pas uniquement de la sécurité alimentaire : la logique de transformation,
+              de réexportation et de valeur ajoutée devient centrale.
+            </p>
+            <div class="tag-row">
+              <span class="tag">États-Unis</span>
+              <span class="tag">Chine</span>
+              <span class="tag">Pakistan</span>
+              <span class="tag">Italie</span>
+              <span class="tag">Pays-Bas</span>
+              <span class="tag">Espagne</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="quote-box" style="margin-top:1rem;">
+          <h3 style="margin-bottom:0.8rem;">Lecture business</h3>
+          <p>
+            Le projet ne se limite pas à un top 10 de pays. Il segmente les opportunités selon la nature du besoin :
+            sécurité alimentaire pour le blé et le lait, transition de consommation pour la viande bovine, et chaîne
+            de valeur plus sophistiquée pour les épices.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="reco">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="mini-label eyebrow">Solutions apportées</div>
+            <h2>Des recommandations activables pour la stratégie d’expansion.</h2>
+          </div>
+        </div>
+        <div class="grid-3">
+          <article class="timeline-card">
+            <h3>Court terme</h3>
+            <p>Prioriser les marchés à dépendance alimentaire avérée pour sécuriser rapidement des volumes.</p>
+            <ul>
+              <li>Chine comme priorité stratégique absolue.</li>
+              <li>Indonésie, Bangladesh et Nigéria comme marchés d’entrée majeurs.</li>
+              <li>Viet Nam comme marché dynamique et multi-produits.</li>
+            </ul>
+          </article>
+          <article class="timeline-card">
+            <h3>Moyen terme</h3>
+            <p>Construire des partenariats locaux dans les pays où la demande devrait continuer à croître.</p>
+            <ul>
+              <li>Approche progressive par produit et zone géographique.</li>
+              <li>Focus sur l’Asie émergente et l’Afrique de l’Ouest.</li>
+              <li>Adaptation de l’offre selon les usages et contraintes locales.</li>
+            </ul>
+          </article>
+          <article class="timeline-card">
+            <h3>Long terme</h3>
+            <p>Explorer des marchés plus spécialisés et plus exigeants en qualité, traçabilité et conformité.</p>
+            <ul>
+              <li>Développement sur les épices à plus forte valeur ajoutée.</li>
+              <li>Positionnement sur des chaînes de transformation internationales.</li>
+              <li>Montée en gamme avec certifications et standards export.</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="panel" style="margin-top:1rem;">
+          <h3>Pays à plus forte récurrence multi-produits</h3>
+          <div class="matrix">
+            <table>
+              <thead>
+                <tr>
+                  <th>Pays</th>
+                  <th>Récurrence</th>
+                  <th>Produits concernés</th>
+                  <th>Lecture stratégique</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Chine</strong></td>
+                  <td>4 / 4</td>
+                  <td>Viande bovine, lait, blé, épices</td>
+                  <td>Priorité stratégique absolue</td>
+                </tr>
+                <tr>
+                  <td><strong>Indonésie</strong></td>
+                  <td>3 / 4</td>
+                  <td>Viande bovine, lait, blé</td>
+                  <td>Marché clé en Asie du Sud-Est</td>
+                </tr>
+                <tr>
+                  <td><strong>Bangladesh</strong></td>
+                  <td>3 / 4</td>
+                  <td>Viande bovine, lait, blé</td>
+                  <td>Forts volumes et logique sécurité alimentaire</td>
+                </tr>
+                <tr>
+                  <td><strong>Nigéria</strong></td>
+                  <td>3 / 4</td>
+                  <td>Viande bovine, lait, blé</td>
+                  <td>Marché stratégique en Afrique de l’Ouest</td>
+                </tr>
+                <tr>
+                  <td><strong>Viet Nam</strong></td>
+                  <td>3 / 4</td>
+                  <td>Lait, blé, épices</td>
+                  <td>Marché diversifié et dynamique</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="limites">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="mini-label eyebrow">Limites</div>
+            <h2>Ce que l’étude éclaire, et ce qu’elle ne couvre pas encore.</h2>
+          </div>
+        </div>
+        <div class="grid-2">
+          <article class="panel">
+            <h3>Forces de l’approche</h3>
+            <ul>
+              <li>Transformation de données officielles FAO en indicateurs décisionnels.</li>
+              <li>Méthode transparente, reproductible et facilement étendable à d’autres produits.</li>
+              <li>Lecture multicritère plus robuste qu’un simple tri par importations.</li>
+            </ul>
+          </article>
+          <article class="panel">
+            <h3>Points à approfondir</h3>
+            <ul>
+              <li>L’analyse repose sur une photographie 2017 et non sur des tendances multi-annuelles.</li>
+              <li>Les contraintes logistiques, réglementaires et géopolitiques ne sont pas intégrées au score.</li>
+              <li>Une phase suivante devrait inclure barrières commerciales, normes sanitaires et coûts d’entrée.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-box">
+        <div class="mini-label eyebrow" style="margin-bottom:0;">Livrable</div>
+        <h2 style="margin-top:0.4rem;">Une étude de cas qui montre la traduction d’un besoin business en architecture analytique.</h2>
+        <p>
+          Cette page synthétise le notebook d’analyse et le rapport de projet : problématique de la société,
+          qualité des données, logique des scores, marchés prioritaires et recommandations export concrètes.
+        </p>
+        <p>
+          Pour un recruteur IA & Data, ce projet montre ma capacité à cadrer un sujet métier, construire une méthode
+          analytique défendable et produire une sortie exploitable au-delà du simple code.
+        </p>
+        <div class="hero-actions" style="margin-bottom:0;">
+          <a class="btn btn-primary" href="index.html#projets">Revenir au portfolio</a>
+          <a class="btn btn-secondary" href="https://github.com/marceldigbeu/Projet-AGROALIMENTAIRE" target="_blank" rel="noreferrer">Ouvrir le dépôt GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
